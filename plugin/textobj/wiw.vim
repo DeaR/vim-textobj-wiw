@@ -41,12 +41,6 @@ let s:prefix = get(g:, 'textobj_wiw_default_key_mappings_prefix', ',')
 " Key-mappings
 call textobj#user#plugin('wiw', {
       \ '-': {
-      \   '*pattern*': 'DUMMY',
-      \   'move-n'   : s:prefix . 'w',
-      \   'move-p'   : s:prefix . 'b',
-      \   'move-N'   : s:prefix . 'e',
-      \   'move-P'   : s:prefix . 'ge',
-      \
       \   '*sfile*'  : expand('<sfile>:p'),
       \   'select-a' : 'a' . s:prefix . 'w', '*select-a-function*': 'textobj#wiw#select_a',
       \   'select-i' : 'i' . s:prefix . 'w', '*select-i-function*': 'textobj#wiw#select_i',
