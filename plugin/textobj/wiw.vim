@@ -36,16 +36,13 @@ let g:loaded_textobj_wiw = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-let s:prefix = get(g:, 'textobj_wiw_default_key_mappings_prefix', ',')
-
 " Key-mappings
 call textobj#user#plugin('wiw', {
       \ '-': {
-      \   'select-a' : 'a' . s:prefix . 'w', '*select-a-function*': 'textobj#wiw#select_a',
-      \   'select-i' : 'i' . s:prefix . 'w', '*select-i-function*': 'textobj#wiw#select_i',
+      \   'select-a' : 'am', '*select-a-function*': 'textobj#wiw#select_a',
+      \   'select-i' : 'im', '*select-i-function*': 'textobj#wiw#select_i',
       \ }
       \})
-unlet s:prefix
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
