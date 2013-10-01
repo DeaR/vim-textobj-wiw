@@ -54,5 +54,10 @@ call textobj#user#plugin('wiw', {
       \})
 unlet s:prefix
 
+" Override move function to share s:move() with s:select().
+function! g:__textobj_wiw.move(...)
+  call call('textobj#wiw#move', a:000)
+endfunction
+
 let &cpo = s:save_cpo
 unlet s:save_cpo

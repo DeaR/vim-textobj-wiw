@@ -24,15 +24,14 @@ let s:CTYPE_BOUND = 4
 " sub-matches matched but the whole pattern did match. See :help
 " search()-sub-match.
 
-
-" Override move function to share s:move() with s:select().
-function! g:__textobj_wiw.move(obj_name, flags, previous_mode)
-  if a:previous_mode ==# 'v'
+function! textobj#wiw#move(obj_name, flags, previous_mode)
+  let save_count1 = v:count1
+  if a:previous_mode ==# 'v' || a:previous_mode ==# 'x'
     normal! gv
   endif
   let pattern = (a:flags =~# 'e' ? s:WIW_TAIL : s:WIW_HEAD)
   let flags   = (a:flags =~# 'b' ? 'b' : '')
-  call s:move(pattern, flags, v:count1, 0)
+  call s:move(pattern, flags, save_count1, 0)
 endfunction
 
 function! s:move(pattern, flags, count, within_word)
