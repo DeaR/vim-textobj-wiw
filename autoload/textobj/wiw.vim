@@ -57,6 +57,36 @@ function! s:move(pattern, flags, count, within_word)
   return submatch
 endfunction
 
+function! s:move2(pattern, flags, count)
+  let pos = getpos('.')
+
+  let submatch = s:move(a:pattern, a:flags, a:count, 0)
+  if submatch == s:NOT_FOUND
+    return 0
+  endif
+  let end = getpos('.')
+
+  call setpos('.', pos)
+
+  return ['v', end, end]
+endfunction
+
+function! textobj#wiw#move_w()
+  return s:move2(s:WIW_HEAD, '', v:count1)
+endfunction
+
+function! textobj#wiw#move_b()
+  return s:move2(s:WIW_HEAD, 'b', v:count1)
+endfunction
+
+function! textobj#wiw#move_e()
+  return s:move2(s:WIW_TAIL, '', v:count1)
+endfunction
+
+function! textobj#wiw#move_ge()
+  return s:move2(s:WIW_TAIL, 'b', v:count1)
+endfunction
+
 function! textobj#wiw#select_a()
   return s:select(0)
 endfunction

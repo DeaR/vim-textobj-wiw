@@ -42,10 +42,10 @@ let s:prefix = get(g:, 'textobj_wiw_default_key_mappings_prefix', ',')
 call textobj#user#plugin('wiw', {
       \ '-': {
       \   '*pattern*': 'DUMMY',
-      \   'move-n'   : s:prefix . 'w',
-      \   'move-p'   : s:prefix . 'b',
-      \   'move-N'   : s:prefix . 'e',
-      \   'move-P'   : s:prefix . 'ge',
+      \   'move-n'   : s:prefix . 'w',  '*move-n-function*': 'textobj#wiw#move_w',
+      \   'move-p'   : s:prefix . 'b',  '*move-p-function*': 'textobj#wiw#move_b',
+      \   'move-N'   : s:prefix . 'e',  '*move-N-function*': 'textobj#wiw#move_e',
+      \   'move-P'   : s:prefix . 'ge', '*move-P-function*': 'textobj#wiw#move_ge',
       \
       \   '*sfile*'  : expand('<sfile>:p'),
       \   'select-a' : 'a' . s:prefix . 'w', '*select-a-function*': 'textobj#wiw#select_a',
